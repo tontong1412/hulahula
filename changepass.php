@@ -51,7 +51,7 @@ if(isset($_POST['submit'])){
 	<input name='newpass' type='password'><br><br>
     confirm <br>
 	<input name='conpass' type='input'><br>
-	<input name='submit' type='submit' value='Login'>
+	<input name='submit' type='submit' value='confirm'>
     
 	
 </form>
