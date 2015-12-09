@@ -1,0 +1,214 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title> HULAHULA HOSTEL</title>
+		<link rel="stylesheet" href="login.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+    
+
+
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+				list-style-type:none;
+			}
+			#container{
+				margin:auto;
+				width:75%;
+				
+			}
+			ul.menu li{
+				
+				float:left;
+				width:200px;
+				height:80px;
+				background:url("bt01.jpg");
+				position:relative;
+				z-index: 0;
+			}
+			ul.menu li:hover{
+				z-index: 2;
+			}
+			* html ul.menu li{
+				display:inline;
+				zoom:1;
+			}
+			*+html ul.menu li{
+				display:inline;
+				zoom:1;
+			}
+			ul.menu li a{
+				display:block;
+				width:100%;
+				height:100%;
+				line-height:80px;
+				text-indent:0px;
+				font-weight:none;
+				color:#575757;
+				text-decoration:none;
+				position:relative;
+			}
+			ul.menu li a:hover{
+				background:url("bt02.jpg");
+			}
+			ul.sub{
+				display:none;
+			}
+			* html ul.sub{
+				zoom:1;
+				position:relative;
+			}
+			*+html ul.sub{
+				zoom:1;
+				position:relative;
+			}
+			ul.sub li{
+				float:none;
+			}
+			ul.sub li ul.sub{
+				position:absolute;
+				left:179px;
+				top:0;
+			}
+			ul.menu{
+				zoom:1;
+			}
+			ul.menu:after {
+				height:0;
+				visibility:hidden;
+				content:".";
+				display:block;
+				clear:both;
+			}
+		</style>
+
+		
+		<style type="text/css">
+
+			#info {
+				border: 2px #ddd solid;
+				border-radius: 20px;
+				width: 300px;
+				padding: 20px;
+				margin:30px;
+				font-size: 15px;
+				font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+				column-count: 2;
+				
+			}
+			#info input {
+				border: none;
+				width: 260px;
+				padding: 20px;
+				font-size: 15px;
+				font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+			}
+			#info input:not(:last-child) {
+				font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+				font-dize: 15px;
+			}
+
+			#button  {
+				border: 2px #ddd solid;
+				border-radius: 20px;
+				width:1000;
+				padding: 20px;
+				margin:30px;
+				font-size: 15px;
+				font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+				
+			}
+			#button button {
+				border: none;
+				width: 200px;
+				padding: 20px;
+				font-size: 15px;
+				font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+				margin:20px;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<font face="Swis721 BT" color="#664b50">
+		<center>
+			<div id="container">
+				<br><a href="main.php"><img src="logo01.jpg"></a></br>
+				<font size="1">SINCE 2015 </br>
+				<font size ="5" color ="#c1caad""> HULAHULA HOSTEL</font></br>
+				<ul class="menu">
+					<li><font size ="3" color ="575757""><a href="#">About</a></font></li>
+					<li><font size ="3" color ="#c1caad""><a href="#">Room & Rate</a></font></li>
+					<li><font size ="3" color ="#c1caad""><a href="#">Facilities</a></font></li>
+					<li><font size ="3" color ="#c1caad""><a href="login.php">Log in</a></font></li>
+					<li><font size ="3" color ="#c1caad""><a href="#">Book</a></font></li>
+				</ul>
+			</div>
+		</center>
+		<?PHP
+			session_start();
+			if($_SESSION['DEPARTMENT_ID']!=1)
+			{
+				echo "<script>alert('please login as owner');</script>";
+				echo '<script>window.location = "Login.php";</script>';
+			}
+			if(empty($_SESSION['EMPLOYEE_ID'])||empty($_SESSION['DEPARTMENT_ID']))
+			{
+			echo '<script>window.location = "Login.php";</script>';
+			}
+			$conn = oci_connect("hulahula","123123123", "//localhost/XE");
+		?>
+        <center>
+			<div id = info>
+				<div>
+					<img src="toon.jpg">
+				</div>
+				<div>
+					<?PHP
+						//show info
+						$id = $_SESSION['EMPLOYEE_ID'];
+						$query = "SELECT * from EMPLOYEE WHERE id = '$id'";
+						$parseRequest = oci_parse($conn, $query);
+						oci_execute($parseRequest);
+						$row = oci_fetch_array($parseRequest, OCI_RETURN_NULLS+OCI_ASSOC);
+						echo "ID : ".$row['ID']."<br>";
+						echo "NAME : ".$row['NAME']."<br>";
+						echo "SURNAME : ".$row['LNAME']."<br>";
+						echo "EMAIL : ".$row['EMAIL']."<br>";
+						echo "<a href='logout.php'>Logout<br></a>";
+						echo "<a href='changepass.php'>change password</a>";
+					?>
+				</div>
+			</div>
+		</center> 
+     
+     
+     <!----------------------------------------------------------------------------------------------------------------------------->
+		<center>
+			<div id= button>
+				<center>
+					<button onclick="window.location.href='owner_emp_main.php'">Employee</button>
+					<button onclick="window.location.href='review_main.php'">Read Review</button>
+					<button onclick="window.location.href='stat.php'">Statistic</button>
+					<button onclick="window.location.href='man_salary.php'">Manage Salary</button>
+					<button onclick="window.location.href='add_emp.php'">Add Employee</button>
+				</center>
+			</div>
+		</center>
+      
+	<!----------------------------------------------------------------------------------------------------------------------------->  
+	  </br></br></br></br></br>
+	   
+		<center>
+			<img src="bottom.gif">
+			<div class="bottom">
+				<ul class="column1"></br>
+					<font size ='2'>2015 by HULAHULA HOSTES. Proudly created with Group 1</font>
+				</ul>
+			</div>
+		</center>
+	</body>
+</html>

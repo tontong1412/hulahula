@@ -1,0 +1,25 @@
+.head
+{
+	height: 100px;
+}
+.bottom {
+  padding: 50px;
+background-color:#9ea9a1;
+font-family:tahoma;
+color: white;
+position:relative;
+height:50px;
+}
+
+.bottom  .column1{
+left:200px;
+position:absolute;
+}
+.bottom .column2{
+right:42%;
+position:absolute;
+}
+.bottom .column3{
+right:200px;
+position:absolute;
+}

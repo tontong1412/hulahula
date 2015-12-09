@@ -148,7 +148,9 @@ ul.menu:after {
     padding: 20px;
 	margin:30px;
 	font-size: 15px;
-	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;	
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	column-count: 2;
+	
 }
 #info input {
     border: none;
@@ -156,13 +158,10 @@ ul.menu:after {
     padding: 20px;
 	font-size: 15px;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
-	
 }
 #info input:not(:last-child) {
 	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-dize: 15px;
-	background-color:#faffbd;
-	margin: 5px;
 }
 		</style>
 		
@@ -171,42 +170,7 @@ ul.menu:after {
 		</head>
 	<body>
 	<font face="Swis721 BT" color="#664b50">
-    <!------------------------------------------------------------session---------------------------------------------------------->
-<?PHP
-	session_start();
-	if(empty($_SESSION['EMPLOYEE_ID'])||empty($_SESSION['DEPARTMENT_ID'])){
-		echo '<script>window.location = "Login.php";</script>';
-		}
-	// Create connection to Oracle
-	$conn = oci_connect("hulahula", "123123123", "//localhost/XE"); 
-?>
-<!-------------------------------------------------------------check & update----------------------------------------------------->
-<?php
-if(isset($_POST['submit'])){
-		$oldpass = trim($_POST['oldpass']);
-		$newpass = trim($_POST['newpass']);
-		$conpass = trim($_POST['conpass']);
-		
-		$id = $_SESSION['EMPLOYEE_ID'];
-		$query = "SELECT * FROM LOGIN WHERE employee_id ='$id' and password='$oldpass'";
-		$parseRequest = oci_parse($conn, $query);
-		oci_execute($parseRequest);
-		// Fetch each row in an associative array
-		$row = oci_fetch_array($parseRequest, OCI_RETURN_NULLS+OCI_ASSOC);
-		
-		if($row && $conpass == $newpass){
-			$query = "UPDATE LOGIN SET password = '$newpass' WHERE employee_id ='$id'";
-			$parseRequest = oci_parse($conn, $query);
-			oci_execute($parseRequest);
-			header( "location: login.php" );
-		}
-		else {
-			echo "<script>alert('Please try again');</script>";
-		}
-}
-?>
 
-<!-------------------------------------------------------------MENU BAR---------------------------------------------------->
 <center>
     <div id="container">
     	<br><a href="main.html"><img src="logo01.jpg"></a></br>
@@ -217,33 +181,44 @@ if(isset($_POST['submit'])){
     	<li><font size ="3" color ="575757""><a href="#">About</a></font>
 		<li><font size ="3" color ="#c1caad""><a href="#">Room & Rate</a></font></li>
 		<li><font size ="3" color ="#c1caad""><a href="#">Facilities</a></font></li>
-		<li><font size ="3" color ="#c1caad""><a href="login.php">Log in</a></font></li>
+		<li><font size ="3" color ="#c1caad""><a href="#">Log in</a></font></li>
 		<li><font size ="3" color ="#c1caad""><a href="#">Book</a></font></li>
         </li>
       </div>>
 	  </center>
-      
-      <!-------------------------------------------------------------INPUT----------------------------------------------------->
+       <?PHP
+		session_start();
+		if(empty($_SESSION['EMPLOYEE_ID'])||empty($_SESSION['DEPARTMENT_ID'])){
+		echo '<script>window.location = "Login.php";</script>';
+		}
+		
+		$conn = oci_connect("hulahula","123123123", "//localhost/XE");
+		?>
         <center>
      <div id = info>
-     
      <div>
-   <form action='changepass.php' method='post'>
-	old Password <br>
-	<input name='oldpass' type='password'><br>
-	new Password<br>
-	<input name='newpass' type='password'><br>
-    confirm Password<br>
-	<input name='conpass' type='password'><br><br>
-	<input name='submit' type='submit' value='confirm'>
-    
-	
-</form>
+     <img src="toon.jpg">
+     </div>
+     <div>
+     <?PHP
+  	$id = $_SESSION['EMPLOYEE_ID'];
+  	$query = "SELECT * from EMPLOYEE WHERE id = '$id'";
+	$parseRequest = oci_parse($conn, $query);
+	oci_execute($parseRequest);
+	$row = oci_fetch_array($parseRequest, OCI_RETURN_NULLS+OCI_ASSOC);
+	//$_SESSION['ID'] = $row['ID'];
+	echo "ID : ".$row['ID']."<br>";
+	echo "NAME : ".$row['NAME']."<br>";
+	echo "SURNAME : ".$row['LNAME']."<br>";
+	echo "EMAIL : ".$row['EMAIL']."<br>";
+	echo "<a href='logout.php'>Logout<br></a>";
+	echo "<a href='changepass.php'>change password</a>";
+	?>
     </div>
     </div>
 	 </center> 
 	  
-	  <!---------------------------------------------------------------------------------------------------------------->
+	  
 	  
 	  
 	  </div>
