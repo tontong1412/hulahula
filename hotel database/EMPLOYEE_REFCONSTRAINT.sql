@@ -1,0 +1,8 @@
+--------------------------------------------------------
+--  Ref Constraints for Table EMPLOYEE
+--------------------------------------------------------
+
+  ALTER TABLE "HULAHULA"."EMPLOYEE" ADD CONSTRAINT "DNUM" FOREIGN KEY ("DNUMBER")
+	  REFERENCES "HULAHULA"."DEPARTMENT" ("DEPT_ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "HULAHULA"."EMPLOYEE" ADD CONSTRAINT "MGR" FOREIGN KEY ("ID")
+	  REFERENCES "HULAHULA"."EMPLOYEE" ("ID") ON DELETE CASCADE ENABLE;

@@ -1,0 +1,9 @@
+"BOOKINGNUMBER","CHECKIN","STATUS","CUSTOMEREMAIL","CHECKOUT","GUESTS","RNUMBER"
+3,"11-12-2015","purchase","hello@gmail.com","12-12-2015",2,24
+1,"02-01-2016","wait","senseiya@hotmail.com","4-01-2016",1,27
+2,"07-08-2016","wait","omahaga@gmail.com","17-08-2016",3,26
+4,"16-05-2015","purchase","taeyeon@gmail.com","18-05-2015",3,25
+5,"25-12-2015","wait","yoona@gmail.com","29-12-2015",4,29
+6,"14-12-2015","wait","yuri@gmail.com","22-12-2015",1,27
+7,"03-11-2015","purchase","kyuhyun@gmail.com","6-11-2015",3,28
+8,"04-02-2015","wait","test","8-02-2015",2,25

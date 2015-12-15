@@ -1,0 +1,7 @@
+"DEPT_ID","DNAME","MGR_ID"
+1,"owner",
+2,"reception",4
+3,"service",8
+4,"maid",2
+5,"maintainance",5
+6,"gardener",6

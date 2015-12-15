@@ -1,0 +1,15 @@
+"ID","HIRE_DATE","PHONENUMBER","EMAIL","SALARY","DNUMBER","NAME","LNAME","MGR_ID"
+6,01-MAY-15,"0835593659
+","worapong@gmail.com",15000,6,"worapong","kompaiboonkit",1
+12,15-DEC-15,"0804320742","kudo@hotmail.com",,3,"shinichi","kudo",3
+13,15-DEC-15,"0849278540","sasuke@hotmail.com",,6,"sasuke","abe",6
+14,15-DEC-15,"084758589","jack@gmail.com",,2,"Jack","sunny",4
+15,15-DEC-15,"089472959","henry@gmail.com",,6,"henry","miyaki",6
+8,01-JUN-15,"0893539584","nadech_barry@gmail.com",50000,3,"nadech","kukimiya",2
+7,01-JUN-15,"0829466948","yaya@gmail.com",30000,5,"yaya","urassaya",2
+1,01-JAN-15,"0818264202","toon@gmail.com",,1,"nattapat","karaket",
+2,01-JAN-15,"0882524406","nonnadda@gmail.com",40000,4,"nonnadda","silamai",1
+3,01-JAN-15,"0818411412","nicha@gmail.com",100000,3,"nicha","kaewwiset",1
+4,01-FEB-15,"0849302954","narongchai@gmail.com",30000,2,"narongchai","kamchuen",1
+5,01-MAR-15,"0882238285","wacharawit@gmail.com",50000,5,"watcharawit","kumpangthip",1
+10,15-DEC-15,"0863839563","lucifer@gmail.com",30000,6,"lucifer","angela",6
