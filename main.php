@@ -2,12 +2,20 @@
 <html>
   <head>
     <title> HULAHULA HOSTEL</title>
-	 <link rel="stylesheet" href="main.css">
+	<!--> <link rel="stylesheet" href="main.css">  <!-->
+	
+	 <link href="demo.css" rel="stylesheet" type="text/css">
 	   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript">
+	
+	
+
+
+
+
 
 	 $(function(){
 	
@@ -65,72 +73,44 @@
 #container{
 	margin:auto;
 	width:75%;
-	
+
 }
-ul.menu li{
-	
-	float:left;
-	width:200px;
-	height:80px;
-	background:url("bt01.jpg");
-	position:relative;
-	z-index: 0;
+
+.bottom {
+  padding: 50px;
+background-color:#9ea9a1;
+font-family:tahoma;
+color: white;
+position:relative;
+height:50px;
 }
-ul.menu li:hover{
-	z-index: 2;
+
+.bottom  .column1{
+left:200px;
+position:absolute;
 }
-* html ul.menu li{
-	display:inline;
-	zoom:1;
+.bottom .column2{
+right:42%;
+position:absolute;
 }
-*+html ul.menu li{
-	display:inline;
-	zoom:1;
+.bottom .column3{
+right:200px;
+position:absolute;
 }
-ul.menu li a{
-	display:block;
-	width:100%;
-	height:100%;
-	line-height:80px;
-	text-indent:0px;
-	font-weight:none;
-	color:#CFDFB5;
-	text-decoration:none;
-	position:relative;
-}
-ul.menu li a:hover{
-	background:url("bt02.jpg");
-}
-ul.sub{
-	display:none;
-}
-* html ul.sub{
-	zoom:1;
-	position:relative;
-}
-*+html ul.sub{
-	zoom:1;
-	position:relative;
-}
-ul.sub li{
-	float:none;
-}
-ul.sub li ul.sub{
-	position:absolute;
-	left:179px;
-	top:0;
-}
-ul.menu{
-	zoom:1;
-}
-ul.menu:after {
-	height:0;
-	visibility:hidden;
-	content:".";
-	display:block;
-	clear:both;
-}
+
 		</style>
+			<!------- ---------------------------- NEW HEADER ------------------------------------------------------------------->
+			<script type="text/javascript">
+$(document).ready( function() {
+	$("#s2").click(function(){
+		$('html,body').animate({scrollTop:$("#order").offset().top},1000);
+	});
+	$("#s3").click(function(){
+		$('html,body').animate({scrollTop:$("#HTB").offset().top},1000);
+	});
+ });
+</script>
+<!------- ---------------------------- END NEW HEADER ------------------------------------------------------------------->
 		
 		<style type="text/css">
 
@@ -191,37 +171,50 @@ ul.menu:after {
 }
 		</style>
 
- <?PHP
-		session_start();
-		// Create connection to Oracle
-		$conn = oci_connect("hulahula","123123123", "//localhost/XE");
-		?>
 
   
 	
 	
 	</head>
+	
+	<!------- ---------------------------- NEW HEADER ------------------------------------------------------------------->
+	
+	
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	
+	
+	
+	
 	<body>
-	<font face="Swis721 BT" color="#664b50">
-<!---------------------------------------------------------------menu bar-------------------------------------------------------------->
+	<font face="Tahoma" color="#575757">
+
 <center>
-    <div id="container">
-    	<br><a href="main.php"><img src="logo01.jpg"></a></br>
+
+
+
+	
+	<div id="container">
+    	<br><a href="main.html"><img src="logo01.jpg"></a></br>
 		
 		<font size="1">SINCE 2015 </br>
 		<font size ="5" color ="#c1caad""> HULAHULA HOSTEL</font></br>
-		<ul class="menu">
-    	<li><font size ="3" color ="575757""><a href="#">About</a></font>
-		<li><font size ="3" color ="#c1caad""><a href="#">Room & Rate</a></font></li>
-		<li><font size ="3" color ="#c1caad""><a href="#">Facilities</a></font></li>
-		<li><font size ="3" color ="#c1caad""><a href="login.php">Log in</a></font></li>
-		<li><font size ="3" color ="#c1caad""><a href="#">Book</a></font></li>
-	   
-	    </li>
+		</div>
 	
-    </div>
+	<div class="subMenu">
+	 	<div class="inner">
+	 			<a href="about.php" class="subNavBtn">About</a> 
+			<a href="room.php" class="subNavBtn">Room & Rate</a>
+			<a href="review.php" class="subNavBtn">Review</a>
+			<a href="login.php" class="subNavBtn">Log in</a>
+			<a href="booking1.php" class="subNavBtn">Book</a>
+		</div>
+</div>
 	
-<!---------------------------------------------------------------photo--------------------------------------------------------------->	
+	
+	
+	<!------- ---------------------------- END NEW HEADER ------------------------------------------------------------------->
 	
 	  <div id="carouselWrap">
 		<center>
@@ -261,7 +254,8 @@ ul.menu:after {
 	<ul class="column1">
 		</br>
 <font size ='2'>2015 by HULAHULA HOSTES. Proudly created with Group 1</font>
-	</ul></div>
+	</ul>
+	</div>
 		
 		
 		

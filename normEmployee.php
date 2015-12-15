@@ -1,38 +1,19 @@
-<?PHP
+<?php 
 	session_start();
-	// Create connection to Oracle
-	$conn = oci_connect("hulahula", "123123123", "//localhost/XE");
-	if (!$conn) {
-		$m = oci_error();
-		echo $m['message'], "\n";
-		exit;
-	} 
-	if(!empty($_SESSION['EMPLOYEE_ID_LOGIN']))
+	if (empty($_SESSION['DEPT_ID_LOGIN']) || empty($_SESSION['EMPLOYEE_ID_LOGIN']))
 	{
-		if ($_SESSION['DEPT_ID_LOGIN']==1)
-			{
-				echo '<script>window.location = "owner.php";</script>'; //owner
-			}
-			if ($_SESSION['DEPT_ID_LOGIN']==2 && $_SESSION['EMPLOYEE_ID_LOGIN']!= $_SESSION['MGR_ID'])
-			{
-				echo '<script>window.location = "reception.php";</script>'; //reception
-			}
-			if( $_SESSION['EMPLOYEE_ID']= $_SESSION['MGR_ID'])
-			{
-				echo '<script>window.location = "manager.php";</script>'; //manager
-			}
-			if( $_SESSION['DEPT_ID_LOGIN']!= 1 && $_SESSION['EMPLOYEE_ID_LOGIN']!= $_SESSION['MGR_ID'])
-			{
-				echo '<script>window.location = "normEmployee.php";</script>'; //manager
-			}
-	}	
+		echo "<script>alert('please login');</script>";
+		echo '<script>window.location = "Login.php";</script>';
+	}
+	$conn = oci_connect("hulahula", "123123123", "//localhost/XE"); 
 ?>
-
+<!---------------------------------------------------------header----------------------------------------------------------------->
 <!DOCTYPE>
 <html>
 	<head>
 		<title> HULAHULA HOSTEL</title>
 		<link rel="stylesheet" href="login.css">
+		<link rel="stylesheet" href="demo.css">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
 		<meta http-equiv="Content-Script-Type" content="text/javascript" />
@@ -121,7 +102,7 @@
 				border-radius: 20px;
 				width: 300px;
 				padding: 20px;
-				margin:30px;
+				margin:50px;
 				font-size: 15px;
 				font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
 				
@@ -137,18 +118,34 @@
 				font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 				font-size: 15px;
 			}
+			table {
+				border-collapse: collapse;
+				width: 25%;
+				margin-left:-600px
+			}
+			th, td {
+				padding: 8px;
+				text-align:center;
+				border-bottom: 1px solid #ddd;
+			}
+			.buttonA{
+				margin:10px;
+				border: none;
+				width: 145px;
+				padding: 20px;
+				font-size: 15px;
+				}
 		</style>	
 	</head>
 	
 	<body>
 		<font face="tahoma" color="#664b50">
-<!-------------------------------------------------------menu bar-------------------------------------------------------------->
 		<center>
 			<div id="container">
 				<br><a href="main.php"><img src="logo01.jpg"></a></br>
 				<font size="1">SINCE 2015 </br>
 				<font size ="5" color ="#c1caad""> HULAHULA HOSTEL</font></br>
-					<div class="subMenu">
+				<div class="subMenu">
 	 	<div class="inner">
 	 			<a href="about.php" class="subNavBtn">About</a> 
 			<a href="room.php" class="subNavBtn">Room & Rate</a>
@@ -157,68 +154,55 @@
 			<a href="booking1.php" class="subNavBtn">Book</a>
 		</div>
 </div>
-				
-		<center>
-			<div id="container"> 
-				<img src = "login01.jpg">
-			</div>
-		</center>		
-
-
-<?PHP
-	if(isset($_POST['submit']))
-	{
-		$username = trim($_POST['username']);
-		$password = trim($_POST['password']);
-		$query = "SELECT * FROM LOGIN, department WHERE department_id = dept_id and username='$username' and password='$password'";
-		$parseRequest = oci_parse($conn, $query);
-		oci_execute($parseRequest);
-		// Fetch each row in an associative array
-		$row = oci_fetch_array($parseRequest, OCI_RETURN_NULLS+OCI_ASSOC);
-		if($row)
-		{
-			$_SESSION['DEPT_ID_LOGIN'] = $row['DEPARTMENT_ID'];
-			$_SESSION['EMPLOYEE_ID_LOGIN'] = $row['EMPLOYEE_ID'];
-			$_SESSION['MGR_ID'] = $row['MGR_ID'];
-			
-			if ($row['DEPARTMENT_ID']==1)
-			{
-				echo '<script>window.location = "owner.php";</script>'; //owner
-			}
-			elseif ($row['DEPARTMENT_ID']==2 && $row['EMPLOYEE_ID']!= $row['MGR_ID'])
-			{
-				echo '<script>window.location = "reception.php";</script>'; //reception
-			}
-			elseif( $row['EMPLOYEE_ID']== $row['MGR_ID'])
-			{
-				echo '<script>window.location = "manager.php";</script>'; //manager
-			}
-			elseif($row['DEPT_ID_LOGIN']==6)
-			{
-				echo '<script>window.location = "normEmployee.php";</script>';
-			}
-			else
-			{
-				echo '<script>window.location = "normEmployee.php";</script>';
-			}
+<!---------------------------------------------------------------------------------------------------------------------------------->				
+<?php 
+	$whoIsLogin = $_SESSION['EMPLOYEE_ID_LOGIN'];
+	$query = "select * from employee, department where dnumber = dept_id and id = '$whoIsLogin'";
+	$parseRequest = oci_parse($conn, $query);
+	oci_execute($parseRequest);
+	$row = oci_fetch_array($parseRequest, OCI_RETURN_NULLS+OCI_ASSOC);
+	$id = $row['ID'];
+	$name = strtoupper($row['NAME']);
+	$lname = strtoupper($row['LNAME']);
+	$tel = substr($row['PHONENUMBER'],0,3) . "-" . substr($row['PHONENUMBER'],3,7) ;
+	$email = $row['EMAIL'];
+	$dname = $row['DNAME'];
+	$file = "_".$whoIsLogin.".jpg";
+	echo "<div id='login'>";
+		if (file_exists($file)){
+			echo "<li><img src='_$whoIsLogin.jpg'></li>";
 		}
 		else
 		{
-			echo "<script>alert('login fail');</script>";
+			echo "<li><img src='_.jpg'></li>";
 		}
-	}
-	oci_close($conn);
+		echo "<li>ID: $id <br></li>";
+		echo "<li>NAME: $name <br></li>";
+		echo "<li>Surname: $lname <br></li>";
+		echo "<li>Department: $dname <br></li>";
+		echo "<li>Tel: $tel<br></li>";
+		echo "<li>E-mail: $email<br></li>";
+		echo "<li><a href='logout.php'>Logout<br></a></li>";
+		echo "<li><a href='changepass.php'>change password</a></li>";
+	echo "</div>";
+	
+	echo "<a href='timetable.php?id=$id'><button class='buttonA' type='button'>Timetable</button></a><br><br><br>";
 ?>
-		
-		<div id= 'login'>	
-			<form action='login.php' method='post'>
-				Username <br>
-				<input name='username' type='input'><br>
-				Password<br>
-				<input name='password' type='password'><br><br>
-				<input name='submit' type='submit' value='Login'>
-			</form>
-		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------bottom------------------------------------------------------------------>
 		
 		<img src="bottom.gif">
 		<div class="bottom">

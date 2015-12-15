@@ -1,0 +1,124 @@
+.head2 {
+  padding: 0px;
+  height: 280px;
+  background-color:#01b9bb;
+}
+
+
+.head3  {
+  height: 10px;
+}
+
+
+.head2 li {
+  background-color:#63d3d7;
+<!--  display: inline;
+  color: white;
+<!--  padding-left:50px;
+<!--  padding-right:50px;
+<!--  padding-top:15px;
+<!--  padding-bottom:15px;
+  font-family:tahoma ;  
+}
+
+
+.content{
+
+font-family:tahoma;
+color: white;
+position:relative;
+height:450px;
+	z-index: 1;
+}
+
+.content .column1{
+right:700px;
+top:0px;
+position:absolute;
+}
+.content .column2{
+right:360px;
+top:0px;
+position:absolute;
+}
+.content .column3{
+right:20px;
+top:0px;
+position:absolute;
+}
+.content .column4{
+right:700px;
+position:absolute;
+top:200px;
+}
+.content .column5{
+right:360px;
+position:absolute;
+top:200px;
+}
+.content .column6{
+right:20px;
+position:absolute;
+top:200px;
+}
+.content .row1{
+top:50px;
+position:absolute;
+}
+
+.content .row2{
+top:400px;
+position:absolute;
+}
+.head2 ul{
+  margin-bottom:20px;
+}
+.imgtransparent
+{
+opacity:1.0; /* ค่าความจาง */
+filter:alpha(opacity=100); /* สำหรับ IE8 ขึ้นไป */
+}
+.imgtransparent:hover
+{
+opacity:0.7; /* ค่าความจาง */
+filter:alpha(opacity=70); /* สำหรับ IE8 ขึ้นไป */
+}
+
+
+
+
+.bottom {
+  padding: 50px;
+background-color:#9ea9a1;
+font-family:tahoma;
+color: white;
+position:relative;
+height:50px;
+}
+
+.bottom  .column1{
+left:200px;
+position:absolute;
+}
+.bottom .column2{
+right:42%;
+position:absolute;
+}
+.bottom .column3{
+right:200px;
+position:absolute;
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
